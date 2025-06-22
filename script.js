@@ -23,22 +23,22 @@ const apiBase = '/';
         async function authenticate() {
             const emailVal = email.value
             const passVal = password.value
+            console.log("hello")
 
             if (
                 isLoading ||
                 !emailVal ||
                 !passVal ||
-                !passVal.match(/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{6,}$/)||
-                !emailVal.match(/^[a-zA-Z0-9._%+-]+@kiit\.ac\.in$/)
+                !passVal.match("^(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z0-9]).{6,}$")||
+                !emailVal.match("^[a-zA-Z0-9._%+-]+@kiit\.ac\.in$")
             ) { 
                 alert("check email and password again and password should have 1 uppercase 1 number 1 charecter with length >=6");
                 verified=true;
             
             }
-        };
 
-        login_btn.addEventListener('click',authenticate);
 
+      
 
 //API check
 try{
@@ -74,7 +74,6 @@ try{
 
             // authenicating into loading
             authBtn.innerText = 'Loading...';
-
             // fetch todos
             await fetchTodos();
 
@@ -88,8 +87,9 @@ try{
         error.innerText = err.message;
         error.style.display = 'block';
 }
+        };
 
-
+         login_btn.addEventListener("click",authenticate);
 
 //All signup parts
 function authenticateSignup() {
